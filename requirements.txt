@@ -1,15 +1,15 @@
 # Core web application
-Flask==3.0.0
-Flask-Cors==4.0.0
-python-dotenv==1.0.0
+Flask
+Flask-Cors
+python-dotenv
 
 # Backend integrations
-supabase==2.3.0
-razorpay==1.3.0
-schedule==1.2.1
+supabase
+razorpay
+schedule
 
 # Optional testing
-pytest==8.3.3
-httpcore==1.0.5
-httpx==0.27.0
-supabase==2.4.0
+pytest
+httpcore
+httpx
+supabase
