@@ -27,7 +27,6 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import unquote
 
-import razorpay
 import schedule
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request, send_from_directory
@@ -62,10 +61,6 @@ GYM_EMAIL = os.getenv("GYM_EMAIL", "forgefitness2026@gmail.com").strip()
 FLASK_SECRET = os.getenv("FLASK_SECRET", "dev-secret").strip()
 PORT = int(os.getenv("PORT", "5000"))
 DATABASE_BACKEND = os.getenv("DATABASE_BACKEND", "auto").strip().lower()
-
-RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID", "").strip()
-RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET", "").strip()
-
 
 app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="")
 app.secret_key = FLASK_SECRET
@@ -264,13 +259,6 @@ def humanize_database_error(exc: Exception) -> str:
 
 
 razorpay_client = None
-if RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET and not is_placeholder(RAZORPAY_KEY_ID) and not is_placeholder(RAZORPAY_KEY_SECRET):
-    try:
-        razorpay_client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
-    except Exception as exc:
-        log.warning("Failed to initialise Razorpay client: %s", exc)
-else:
-    log.warning("Razorpay credentials are missing or placeholders. Payment endpoints will stay disabled.")
 
 
 def require_database():
@@ -1348,86 +1336,9 @@ def api_run_notifications():
     return jsonify({"ok": True, "summary": summary})
 
 
-@app.route("/api/create-order", methods=["POST"])
-def api_create_order():
-    if not razorpay_client:
-        return error_response("Razorpay is not configured.", 503)
-
-    payload = request.get_json(silent=True) or {}
-    amount = payload.get("amount")
-    currency = payload.get("currency", "INR")
-    receipt = payload.get("receipt", f"receipt_{int(datetime.now().timestamp())}")
-    description = payload.get("description", "Membership")
-
-    if not amount or not isinstance(amount, (int, float)):
-        return error_response("amount is required and must be a number.", 400)
-    if amount < 100:
-        return error_response("Minimum amount is 100 paise (Rs 1).", 400)
-
-    try:
-        order = razorpay_client.order.create(
-            data={
-                "amount": int(amount),
-                "currency": currency,
-                "receipt": receipt,
-                "notes": {"description": description},
-            }
-        )
-        log.info("Razorpay order created: %s", order["id"])
-        return jsonify(
-            {
-                "ok": True,
-                "key_id": RAZORPAY_KEY_ID,
-                "order_id": order["id"],
-                "amount": order["amount"],
-                "currency": order["currency"],
-            }
-        )
-    except Exception as exc:
-        log.error("Failed to create Razorpay order: %s", exc)
-        return error_response(f"Failed to create order: {exc}", 500)
-
-
-@app.route("/api/verify-payment", methods=["POST"])
-def api_verify_payment():
-    if not razorpay_client:
-        return error_response("Razorpay is not configured.", 503)
-
-    payload = request.get_json(silent=True) or {}
-    order_id = payload.get("razorpay_order_id")
-    payment_id = payload.get("razorpay_payment_id")
-    signature = payload.get("razorpay_signature")
-
-    if not all([order_id, payment_id, signature]):
-        return error_response(
-            "Missing required fields: razorpay_order_id, razorpay_payment_id, razorpay_signature.",
-            400,
-        )
-
-    try:
-        data = f"{order_id}|{payment_id}"
-        generated_signature = hmac.new(
-            RAZORPAY_KEY_SECRET.encode(),
-            data.encode(),
-            hashlib.sha256,
-        ).hexdigest()
-
-        if generated_signature != signature:
-            log.warning("Payment signature mismatch for order %s", order_id)
-            return error_response("Payment verification failed. Signature mismatch.", 400)
-
-        log.info("Payment verified successfully: %s for order %s", payment_id, order_id)
-        return jsonify(
-            {
-                "ok": True,
-                "message": "Payment verified successfully",
-                "payment_id": payment_id,
-                "order_id": order_id,
-            }
-        )
-    except Exception as exc:
-        log.error("Payment verification error: %s", exc)
-        return error_response(f"Verification failed: {exc}", 500)
+@app.route("/api/payment-disabled", methods=["GET"])
+def api_payment_disabled():
+    return error_response("Payments are currently disabled.", 503)
 
 
 def start_scheduler():
