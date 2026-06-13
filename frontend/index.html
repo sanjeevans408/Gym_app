@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forge Fitness Admin | Gym Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="admin-portal">
+
+  <div id="loginScreen" class="login-screen">
+    <div class="ambient-shell" aria-hidden="true">
+      <div class="ambient-orb orb-mint"></div>
+      <div class="ambient-orb orb-blue"></div>
+      <div class="ambient-grid"></div>
+    </div>
+
+    <div class="login-layout">
+      <section class="login-showcase">
+        <span class="section-kicker">Forge Fitness control room</span>
+        <h1>Run member operations with more clarity, less friction, and better follow-up.</h1>
+        <p class="showcase-copy">
+          Track renewals, organize member records, and stay ahead of notifications from one refined workspace built
+          for busy gym teams.
+        </p>
+
+        <div class="showcase-metrics">
+          <article class="metric-card">
+            <span class="metric-label">Member ops</span>
+            <strong>Fast intake</strong>
+            <p>Create, edit, and renew memberships without breaking flow.</p>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">Revenue guard</span>
+            <strong>Renewal visibility</strong>
+            <p>Spot overdue accounts and due-soon members before they slip.</p>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">Outreach</span>
+            <strong>Smart reminders</strong>
+            <p>Queue notifications and keep communication timely and consistent.</p>
+          </article>
+        </div>
+
+        <div class="showcase-panel">
+          <div class="panel-header">
+            <span class="panel-pill">Preview</span>
+            <span class="panel-copy">Daily operations snapshot</span>
+          </div>
+          <div class="panel-grid">
+            <div class="panel-stat">
+              <span class="panel-stat-label">Urgent renewals</span>
+              <strong>09</strong>
+            </div>
+            <div class="panel-stat">
+              <span class="panel-stat-label">Member updates</span>
+              <strong>24</strong>
+            </div>
+            <div class="panel-stat wide">
+              <span class="panel-stat-label">What changes with the new UI</span>
+              <p>Clearer hierarchy, better spacing, smoother motion, and a friendlier experience on both desktop and
+                mobile.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="login-card">
+        <div class="login-logo">
+          <img src="assets/brand/forge-fitness-logo.webp" alt="Forge Fitness logo" class="brand-mark" />
+          <div>
+            <p class="login-overline">Admin portal</p>
+            <h2>Welcome back</h2>
+            <p class="login-subtitle">Sign in to manage memberships, renewals, and notifications.</p>
+          </div>
+        </div>
+
+        <div class="login-form">
+          <div class="field-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" placeholder="admin@ironcore.gym" autocomplete="email" />
+          </div>
+          <div class="field-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter your password"
+              autocomplete="current-password" />
+          </div>
+          <div id="loginError" class="error-msg hidden"></div>
+          <button type="button" class="btn-primary btn-block" onclick="handleLogin()">
+            <span>Access dashboard</span>
+          </button>
+        </div>
+
+        <div class="login-footer">
+          <p class="login-hint">Demo: admin@ironcore.gym / admin123</p>
+          <div class="login-links">
+            <a href="user.html" class="portal-link">Open member portal</a>
+            <a href="about.html" class="portal-link">View club page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <div id="sidebarBackdrop" class="sidebar-backdrop" onclick="toggleSidebar(false)"></div>
+
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-top">
+        <div class="sidebar-logo">
+          <img src="assets/brand/forge-fitness-logo.webp" alt="Forge Fitness logo" class="brand-mark small" />
+          <div>
+            <span class="sidebar-brand">Forge Fitness</span>
+            <span class="sidebar-caption">Admin workspace</span>
+          </div>
+        </div>
+        <button type="button" class="sidebar-close" onclick="toggleSidebar(false)">Close</button>
+      </div>
+
+      <div class="sidebar-panel">
+        <p>Stay focused on renewals, clean member records, and timely outreach without losing the big picture.</p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button type="button" class="nav-item active" data-view="dashboard" onclick="showView('dashboard', this)">
+          <span class="nav-icon">01</span>
+          <span class="nav-copy">
+            <span class="nav-label">Dashboard</span>
+            <span class="nav-helper">Live gym overview</span>
+          </span>
+        </button>
+        <button type="button" class="nav-item" data-view="members" onclick="showView('members', this)">
+          <span class="nav-icon">02</span>
+          <span class="nav-copy">
+            <span class="nav-label">Members</span>
+            <span class="nav-helper">Profiles and plans</span>
+          </span>
+        </button>
+        <button type="button" class="nav-item" data-view="dues" onclick="showView('dues', this)">
+          <span class="nav-icon">03</span>
+          <span class="nav-copy">
+            <span class="nav-label">Due dates</span>
+            <span class="nav-helper">Renewal priority list</span>
+          </span>
+        </button>
+        <button type="button" class="nav-item" data-view="notifications" onclick="showView('notifications', this)">
+          <span class="nav-icon">04</span>
+          <span class="nav-copy">
+            <span class="nav-label">Notifications</span>
+            <span class="nav-helper">Reminder activity</span>
+          </span>
+          <span class="badge" id="notifBadge">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-info">
+          <div class="admin-avatar">A</div>
+          <div>
+            <div class="admin-name">Admin</div>
+            <div class="admin-role">Gym manager</div>
+          </div>
+        </div>
+        <button type="button" class="btn-logout" onclick="handleLogout()">Log out</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div class="header-leading">
+          <button type="button" class="menu-toggle" onclick="toggleSidebar(true)">Menu</button>
+          <div>
+            <p class="page-eyebrow">Admin workspace</p>
+            <div id="pageTitle" class="page-title">Dashboard</div>
+            <p id="pageSubtitle" class="page-subtitle">Monitor renewals, member activity, and outreach from one place.
+            </p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div id="systemHealthChip" class="status-chip">Connecting</div>
+          <div class="live-clock-wrap">
+            <span class="live-label">Local time</span>
+            <div class="live-clock" id="liveClock"></div>
+          </div>
+          <button type="button" class="btn-secondary btn-sm"
+            onclick="showView('notifications', document.querySelector('.nav-item[data-view=&quot;notifications&quot;]'))">
+            View alerts
+          </button>
+          <button type="button" class="btn-primary btn-sm" onclick="openAddMemberModal()">Add member</button>
+        </div>
+      </header>
+
+      <div id="view-dashboard" class="view active">
+        <section class="dashboard-hero glass-card">
+          <div class="hero-copy-block">
+            <span class="section-kicker">Today at a glance</span>
+            <h1>Stay ahead of every renewal before it becomes a problem.</h1>
+            <p id="dashboardSummary" class="hero-copy">Loading membership insights...</p>
+            <div class="hero-actions">
+              <button type="button" class="btn-primary" onclick="openAddMemberModal()">Add a member</button>
+              <button type="button" class="btn-secondary"
+                onclick="showView('dues', document.querySelector('.nav-item[data-view=&quot;dues&quot;]'))">
+                Review due dates
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-aside">
+            <div class="hero-metric">
+              <span class="hero-label">Pending notifications</span>
+              <strong id="heroPendingCount">0</strong>
+              <span id="heroPendingText">All messages are caught up.</span>
+            </div>
+            <div class="hero-metric">
+              <span class="hero-label">Renewal watch</span>
+              <strong id="dashboardRange">0 urgent</strong>
+              <span>Members due in the next 48 hours.</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-top">
+              <span class="stat-icon">MB</span>
+              <span class="stat-trend">Roster</span>
+            </div>
+            <div class="stat-val" id="statTotal">0</div>
+            <div class="stat-label">Total members</div>
+            <p id="statTotalMeta" class="stat-meta">Current active roster across all plans.</p>
+          </article>
+
+          <article class="stat-card stat-alert">
+            <div class="stat-top">
+              <span class="stat-icon">OD</span>
+              <span class="stat-trend">Priority</span>
+            </div>
+            <div class="stat-val" id="statOverdue">0</div>
+            <div class="stat-label">Overdue</div>
+            <p id="statOverdueMeta" class="stat-meta">Members already past their renewal date.</p>
+          </article>
+
+          <article class="stat-card stat-warn">
+            <div class="stat-top">
+              <span class="stat-icon">D2</span>
+              <span class="stat-trend">Action soon</span>
+            </div>
+            <div class="stat-val" id="statDueSoon">0</div>
+            <div class="stat-label">Due in 2 days</div>
+            <p id="statDueSoonMeta" class="stat-meta">Best time window to send reminders.</p>
+          </article>
+
+          <article class="stat-card stat-ok">
+            <div class="stat-top">
+              <span class="stat-icon">OK</span>
+              <span class="stat-trend">Healthy</span>
+            </div>
+            <div class="stat-val" id="statActive">0</div>
+            <div class="stat-label">Active</div>
+            <p id="statActiveMeta" class="stat-meta">Members with enough runway before renewal.</p>
+          </article>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2>Urgent renewals</h2>
+                <p class="card-caption">Overdue members and people due within 48 hours.</p>
+              </div>
+            </div>
+            <div id="urgentList" class="member-table-wrap">
+              <p class="empty-state">No urgent renewals right now.</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2>Recent activity</h2>
+                <p class="card-caption">Latest profile changes and notification actions.</p>
+              </div>
+            </div>
+            <div id="activityLog" class="activity-log">
+              <p class="empty-state">No recent activity yet.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div id="view-members" class="view hidden">
+        <section class="view-intro glass-card">
+          <div>
+            <span class="section-kicker">Members</span>
+            <h1>Search, update, and keep every profile easy to scan.</h1>
+            <p>Filter by plan or status to focus the roster in seconds, add new members quickly, and remove old profiles when needed.</p>
+          </div>
+          <button type="button" class="btn-primary btn-sm" onclick="openAddMemberModal()">Add member</button>
+        </section>
+
+        <section class="glass-card toolbar-card">
+          <div class="toolbar">
+            <input type="text" class="search-input" id="memberSearch" placeholder="Search by name, email, or phone"
+              oninput="filterMembers()" />
+            <select class="filter-select" id="planFilter" onchange="filterMembers()">
+              <option value="">All plans</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Quarterly">Quarterly</option>
+              <option value="Annual">Annual</option>
+            </select>
+            <select class="filter-select" id="statusFilter" onchange="filterMembers()">
+              <option value="">All status</option>
+              <option value="active">Active</option>
+              <option value="overdue">Overdue</option>
+              <option value="expiring">Expiring soon</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="card table-card">
+          <div class="card-header">
+            <div>
+              <h2>Member roster</h2>
+              <p class="card-caption">Click any sortable heading to reorder the list. Use the Actions column to edit, renew, or remove members.</p>
+            </div>
+            <button type="button" class="btn-primary btn-sm" onclick="openAddMemberModal()">Add member</button>
+          </div>
+          <div class="table-wrap">
+            <table class="members-table">
+              <thead>
+                <tr>
+                  <th onclick="sortTable('name')">Name</th>
+                  <th onclick="sortTable('email')">Email</th>
+                  <th onclick="sortTable('phone')">Phone</th>
+                  <th onclick="sortTable('plan')">Plan</th>
+                  <th onclick="sortTable('membership_type')">Tier</th>
+                  <th onclick="sortTable('due_date')">Due date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="membersTableBody"></tbody>
+            </table>
+          </div>
+          <p id="noMembersMsg" class="empty-state hidden">No members match the current filters.</p>
+        </section>
+      </div>
+
+      <div id="view-dues" class="view hidden">
+        <section class="view-intro glass-card">
+          <div>
+            <span class="section-kicker">Renewals</span>
+            <h1>Work the renewal queue from highest risk to healthiest accounts.</h1>
+            <p>Use this view to spot who needs outreach now and who can wait.</p>
+          </div>
+        </section>
+
+        <section class="card table-card">
+          <div class="card-header">
+            <div>
+              <h2>All due dates</h2>
+              <p class="card-caption">Sorted by urgency so the next action is always obvious.</p>
+            </div>
+            <div class="legend">
+              <span class="badge-overdue">Overdue</span>
+              <span class="badge-due-soon">Due soon</span>
+              <span class="badge-ok">Active</span>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="members-table">
+              <thead>
+                <tr>
+                  <th>Member</th>
+                  <th>Plan</th>
+                  <th>Due date</th>
+                  <th>Days left</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="duesTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <div id="view-notifications" class="view hidden">
+        <section class="view-intro glass-card split-intro">
+          <div>
+            <span class="section-kicker">Notifications</span>
+            <h1>Keep renewal reminders timely, visible, and easy to review.</h1>
+            <p>Messages are queued automatically before due dates, and you can send pending ones manually whenever
+              needed.</p>
+          </div>
+          <button type="button" class="btn-primary btn-sm" onclick="sendPendingNotifications()">Send pending
+            now</button>
+        </section>
+
+        <section class="card mb-4">
+          <div class="card-header">
+            <div>
+              <h2>How this helps</h2>
+              <p class="card-caption">Automatic nudges reduce missed renewals and keep member communication consistent.
+              </p>
+            </div>
+          </div>
+          <p class="text-muted">Notifications are created for overdue members and for members due within the next two
+            days, then moved into your activity log once they are sent.</p>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2>Notification log</h2>
+              <p class="card-caption">Recent reminder activity across all members.</p>
+            </div>
+          </div>
+          <div id="notifLog" class="notif-log"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div id="memberModal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <p class="modal-eyebrow">Member details</p>
+          <h2 id="modalTitle">Add new member</h2>
+        </div>
+        <button type="button" class="modal-close" onclick="closeMemberModal()">Close</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="memberId" />
+        <div class="form-grid">
+          <div class="field-group">
+            <label for="memberName">Full name</label>
+            <input type="text" id="memberName" placeholder="John Doe" />
+          </div>
+          <div class="field-group">
+            <label for="memberEmail">Email</label>
+            <input type="email" id="memberEmail" placeholder="john@email.com" />
+          </div>
+          <div class="field-group">
+            <label for="memberPhone">Phone</label>
+            <input type="tel" id="memberPhone" placeholder="+91 9876543210" />
+          </div>
+          <div class="field-group">
+            <label for="memberPlan">Membership plan</label>
+            <select id="memberPlan">
+              <option value="Monthly">Monthly</option>
+              <option value="Quarterly">Quarterly</option>
+              <option value="Annual">Annual</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="memberTier">Membership tier</label>
+            <select id="memberTier">
+              <option value="Strength Training">Strength Training</option>
+              <option value="Strength / Cardio">Strength / Cardio</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="memberDue">Due date</label>
+            <input type="date" id="memberDue" />
+          </div>
+          <div class="field-group">
+            <label for="memberJoin">Join date</label>
+            <input type="date" id="memberJoin" />
+          </div>
+          <div class="field-group full-width">
+            <label for="memberNotes">Notes</label>
+            <textarea id="memberNotes" placeholder="Training preferences, health notes, or admin context"></textarea>
+          </div>
+        </div>
+        <div id="modalError" class="error-msg hidden"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" onclick="closeMemberModal()">Cancel</button>
+        <button type="button" class="btn-primary" id="saveMemberBtn" onclick="saveMember()">Save member</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="deleteModal" class="modal-overlay hidden">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <div>
+          <p class="modal-eyebrow">Remove member</p>
+          <h2>Remove this profile?</h2>
+        </div>
+        <button type="button" class="modal-close" onclick="closeDeleteModal()">Close</button>
+      </div>
+      <div class="modal-body">
+        <p>This will permanently remove <strong id="deleteMemberName"></strong> from the system. This action cannot be
+          undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+        <button type="button" class="btn-danger" onclick="confirmDelete()">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

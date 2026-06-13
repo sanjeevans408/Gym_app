@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forge Fitness Member Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="user.css" />
+</head>
+
+<body class="user-portal">
+  <div class="u-scene" aria-hidden="true">
+    <div class="u-particles" id="particles"></div>
+    <div class="u-glow-orb orb1"></div>
+    <div class="u-glow-orb orb2"></div>
+  </div>
+
+  <div id="userLoginScreen" class="u-login-screen">
+    <div class="u-login-shell">
+      <section class="u-login-story">
+        <span class="section-kicker">Member experience</span>
+        <h1>Your training hub for renewals, classes, and progress.</h1>
+        <p>
+          Check membership status, explore upcoming sessions, review visit history, and manage your details in one
+          smoother, more supportive flow.
+        </p>
+
+        <div class="u-story-grid">
+          <article class="u-story-card">
+            <span class="u-story-label">Renewal clarity</span>
+            <strong>See your plan status instantly</strong>
+            <p>Know exactly when your membership renews and what to do next.</p>
+          </article>
+          <article class="u-story-card">
+            <span class="u-story-label">Class planning</span>
+            <strong>Book with less friction</strong>
+            <p>Browse the week, reserve your spot, and stay consistent.</p>
+          </article>
+          <article class="u-story-card">
+            <span class="u-story-label">Progress view</span>
+            <strong>Keep motivation visible</strong>
+            <p>Visits, streaks, payments, and activity all stay easy to scan.</p>
+          </article>
+        </div>
+      </section>
+
+      <div class="u-login-wrap">
+        <div class="u-login-card">
+          <div class="u-login-logo">
+            <img src="assets/brand/forge-fitness-logo.webp" alt="Forge Fitness logo" class="brand-mark" />
+            <div>
+              <p class="login-overline">Member portal</p>
+              <h2>Welcome back</h2>
+              <p class="u-login-sub">Sign in to manage your membership and schedule.</p>
+            </div>
+          </div>
+
+          <div id="uLoginForm" class="u-login-form">
+            <div class="field-group">
+              <label for="uEmail">Membership email</label>
+              <input type="email" id="uEmail" placeholder="your@email.com" autocomplete="email" />
+            </div>
+            <div class="field-group">
+              <label for="uPassword">Password</label>
+              <input type="password" id="uPassword" placeholder="Enter your password" autocomplete="current-password" />
+            </div>
+            <div id="uLoginError" class="error-msg hidden"></div>
+            <button type="button" class="btn-primary u-btn-full" onclick="userLogin()">Enter my portal</button>
+            <button type="button" class="u-forgot-btn" onclick="showForgot()">Forgot password?</button>
+          </div>
+
+          <div id="uForgotForm" class="u-login-form hidden">
+            <p class="u-forgot-info">Enter your email and we will send a password reset link.</p>
+            <div class="field-group">
+              <label for="uForgotEmail">Email</label>
+              <input type="email" id="uForgotEmail" placeholder="your@email.com" />
+            </div>
+            <div id="uForgotMsg" class="hidden"></div>
+            <button type="button" class="btn-primary u-btn-full" onclick="sendReset()">Send reset link</button>
+            <button type="button" class="u-forgot-btn" onclick="showLogin()">Back to login</button>
+          </div>
+
+          <div class="u-login-footer">
+            <p class="u-demo-hint">Demo: member@ironcore.gym / member123</p>
+            <div class="u-login-links">
+              <a href="index.html" class="portal-link">Admin portal</a>
+              <a href="about.html" class="portal-link">About Forge Fitness</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="userApp" class="u-app hidden">
+    <nav class="u-topnav">
+      <div class="u-topnav-logo">
+        <img src="assets/brand/forge-fitness-logo.webp" alt="Forge Fitness logo" class="brand-mark small" />
+        <span class="u-topnav-name">Forge Fitness</span>
+      </div>
+
+      <div class="u-topnav-center">
+        <button type="button" class="u-nav-tab active" data-view="home" onclick="uShowView('home', this)">Home</button>
+        <button type="button" class="u-nav-tab" data-view="schedule"
+          onclick="uShowView('schedule', this)">Schedule</button>
+        <button type="button" class="u-nav-tab" data-view="history"
+          onclick="uShowView('history', this)">History</button>
+        <button type="button" class="u-nav-tab" data-view="payments"
+          onclick="uShowView('payments', this)">Payments</button>
+        <button type="button" class="u-nav-tab" data-view="profile"
+          onclick="uShowView('profile', this)">Profile</button>
+      </div>
+
+      <div class="u-topnav-right">
+        <button type="button" class="u-notif-btn" onclick="toggleNotifPanel()" title="Notifications">
+          Alerts
+          <span class="u-notif-dot" id="uNotifDot"></span>
+        </button>
+        <button type="button" class="u-user-chip"
+          onclick="uShowView('profile', document.querySelector('[data-view=&quot;profile&quot;]'))">
+          <div class="u-user-avatar" id="uNavAvatar">?</div>
+          <span id="uNavName">Member</span>
+        </button>
+        <button type="button" class="u-logout-btn" onclick="userLogout()">Log out</button>
+      </div>
+    </nav>
+
+    <div id="uNotifPanel" class="u-notif-panel hidden">
+      <div class="u-notif-panel-header">
+        <span>Notifications</span>
+        <button type="button" onclick="toggleNotifPanel()">Close</button>
+      </div>
+      <div id="uNotifPanelList" class="u-notif-panel-list"></div>
+    </div>
+    <div id="uNotifOverlay" class="u-notif-overlay hidden" onclick="toggleNotifPanel()"></div>
+
+    <main class="u-main">
+      <section class="u-welcome-banner">
+        <div>
+          <span class="section-kicker">Member dashboard</span>
+          <h1>Welcome back, <span id="uBannerName">Member</span>.</h1>
+          <p id="uBannerDueText">Your plan status, class activity, and next actions all live here.</p>
+        </div>
+        <div class="u-banner-actions">
+          <span id="uBannerPlan" class="u-banner-pill">Monthly plan</span>
+          <button type="button" class="btn-secondary btn-sm"
+            onclick="uShowView('payments', document.querySelector('[data-view=&quot;payments&quot;]'))">
+            Review billing
+          </button>
+          <button type="button" class="btn-primary btn-sm" onclick="openRenewModal()">Renew membership</button>
+        </div>
+      </section>
+
+      <div id="uview-home" class="u-view active">
+        <div class="u-hero">
+          <div class="u-membership-card" id="uMembershipCard">
+            <div class="ucard-noise"></div>
+            <div class="ucard-top">
+              <span class="ucard-gym">Forge Fitness</span>
+              <span class="ucard-plan" id="uCardPlan">Monthly</span>
+            </div>
+            <div class="ucard-mid">
+              <div class="ucard-avatar" id="uCardAvatar">?</div>
+              <div>
+                <div class="ucard-name" id="uCardName">-</div>
+                <div class="ucard-email" id="uCardEmail">-</div>
+              </div>
+            </div>
+            <div class="ucard-bot">
+              <div class="ucard-field">
+                <div class="ucard-flabel">Member since</div>
+                <div class="ucard-fval" id="uCardJoin">-</div>
+              </div>
+              <div class="ucard-field">
+                <div class="ucard-flabel">Renews</div>
+                <div class="ucard-fval ucard-due" id="uCardDue">-</div>
+              </div>
+              <div class="ucard-field">
+                <div class="ucard-flabel">Status</div>
+                <div class="ucard-fval" id="uCardStatus">-</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="u-countdown-wrap">
+            <div class="u-countdown" id="uCountdown">
+              <div class="u-cd-number" id="uCdDays">-</div>
+              <div class="u-cd-label">days until renewal</div>
+            </div>
+            <div class="u-renewal-tip" id="uRenewalTip"></div>
+            <div class="u-action-card">
+              <span class="u-action-label">Quick actions</span>
+              <div class="u-action-buttons">
+                <button type="button" class="btn-secondary btn-sm"
+                  onclick="uShowView('schedule', document.querySelector('[data-view=&quot;schedule&quot;]'))">
+                  Explore classes
+                </button>
+                <button type="button" class="btn-primary btn-sm" onclick="openRenewModal()">Renew now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="u-quick-stats">
+          <div class="u-qs-card">
+            <div class="u-qs-label-top">Renewal runway</div>
+            <div class="u-qs-val" id="uDaysLeft">-</div>
+            <div class="u-qs-label">Days left</div>
+          </div>
+          <div class="u-qs-card">
+            <div class="u-qs-label-top">Consistency</div>
+            <div class="u-qs-val" id="uTotalVisits">0</div>
+            <div class="u-qs-label">Total visits</div>
+          </div>
+          <div class="u-qs-card">
+            <div class="u-qs-label-top">Momentum</div>
+            <div class="u-qs-val" id="uStreak">0</div>
+            <div class="u-qs-label">Day streak</div>
+          </div>
+          <div class="u-qs-card">
+            <div class="u-qs-label-top">Time invested</div>
+            <div class="u-qs-val" id="uMemberMonths">0</div>
+            <div class="u-qs-label">Months as member</div>
+          </div>
+        </div>
+
+        <div id="uAlertBanner" class="u-alert-banner hidden"></div>
+
+        <div class="u-home-grid">
+          <div class="u-card">
+            <div class="u-card-header">
+              <h3>This week's activity</h3>
+              <span class="u-card-sub" id="uWeekTotal">0 sessions</span>
+            </div>
+            <div class="u-week-chart" id="uWeekChart"></div>
+          </div>
+
+          <div class="u-card">
+            <div class="u-card-header">
+              <h3>Upcoming classes</h3>
+              <button type="button" class="u-link-btn"
+                onclick="uShowView('schedule', document.querySelector('[data-view=&quot;schedule&quot;]'))">
+                View all
+              </button>
+            </div>
+            <div id="uUpcomingClasses" class="u-class-list"></div>
+          </div>
+
+          <div class="u-card u-span2">
+            <div class="u-card-header">
+              <h3>Club announcements</h3>
+            </div>
+            <div id="uAnnouncements" class="u-announcements"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="uview-schedule" class="u-view hidden">
+        <div class="u-view-header">
+          <h2>Class schedule</h2>
+          <p>Browse the next seven days and reserve your next session in a few taps.</p>
+        </div>
+
+        <div class="u-day-tabs" id="uDayTabs"></div>
+        <div class="u-schedule-grid" id="uScheduleGrid"></div>
+      </div>
+
+      <div id="uview-history" class="u-view hidden">
+        <div class="u-view-header">
+          <h2>My history</h2>
+          <p>Attendance, renewals, and payment activity in one place.</p>
+        </div>
+
+        <div class="u-history-grid">
+          <div class="u-card u-span2">
+            <div class="u-card-header">
+              <h3>Attendance heatmap</h3>
+              <span class="u-card-sub" id="uHeatmapMonth"></span>
+            </div>
+            <div class="u-heatmap" id="uHeatmap"></div>
+            <div class="u-heatmap-legend">
+              <span>Lower</span>
+              <div class="u-hm-swatch s0"></div>
+              <div class="u-hm-swatch s1"></div>
+              <div class="u-hm-swatch s2"></div>
+              <div class="u-hm-swatch s3"></div>
+              <span>Higher</span>
+            </div>
+          </div>
+
+          <div class="u-card">
+            <div class="u-card-header">
+              <h3>Payment history</h3>
+            </div>
+            <div id="uPaymentHistory" class="u-payment-list"></div>
+          </div>
+
+          <div class="u-card">
+            <div class="u-card-header">
+              <h3>Recent visits</h3>
+            </div>
+            <div id="uVisitLog" class="u-visit-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="uview-profile" class="u-view hidden">
+        <div class="u-view-header">
+          <h2>My profile</h2>
+          <p>Update your personal details and keep your membership info current.</p>
+        </div>
+
+        <div class="u-profile-grid">
+          <div class="u-card u-profile-hero">
+            <div class="u-profile-avatar-wrap">
+              <div class="u-profile-avatar" id="uProfileAvatar">?</div>
+              <div class="u-profile-avatar-ring"></div>
+            </div>
+            <div class="u-profile-name" id="uProfileName">-</div>
+            <div class="u-profile-plan-badge" id="uProfilePlan">Monthly</div>
+            <div class="u-profile-meta" id="uProfileMeta">Member since -</div>
+            <div class="u-profile-stats">
+              <div class="u-ps-item">
+                <div class="u-ps-val" id="uPsVisits">0</div>
+                <div class="u-ps-label">Visits</div>
+              </div>
+              <div class="u-ps-item">
+                <div class="u-ps-val" id="uPsStreak">0</div>
+                <div class="u-ps-label">Streak</div>
+              </div>
+              <div class="u-ps-item">
+                <div class="u-ps-val" id="uPsMonths">0</div>
+                <div class="u-ps-label">Months</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="u-card">
+            <div class="u-card-header">
+              <h3>Personal details</h3>
+            </div>
+            <div class="u-profile-form">
+              <div class="form-grid">
+                <div class="field-group">
+                  <label for="uPfName">Full name</label>
+                  <input type="text" id="uPfName" />
+                </div>
+                <div class="field-group">
+                  <label for="uPfEmail">Email</label>
+                  <input type="email" id="uPfEmail" readonly style="opacity:0.6;cursor:not-allowed" />
+                </div>
+                <div class="field-group">
+                  <label for="uPfPhone">Phone</label>
+                  <input type="tel" id="uPfPhone" placeholder="+91 9876543210" />
+                </div>
+                <div class="field-group">
+                  <label for="uPfEmergency">Emergency contact</label>
+                  <input type="tel" id="uPfEmergency" placeholder="+91 9876543210" />
+                </div>
+                <div class="field-group full-width">
+                  <label for="uPfHealth">Health notes or conditions</label>
+                  <textarea id="uPfHealth"
+                    placeholder="Allergies, injuries, recovery notes, or important context"></textarea>
+                </div>
+              </div>
+              <div id="uProfileMsg" class="hidden" style="margin-top:12px;"></div>
+              <button type="button" class="btn-primary" style="margin-top:16px" onclick="saveProfile()">Save
+                changes</button>
+            </div>
+          </div>
+
+          <div class="u-card">
+            <div class="u-card-header">
+              <h3>Membership details</h3>
+            </div>
+            <div class="u-membership-details">
+              <div class="u-md-row">
+                <span class="u-md-label">Plan</span>
+                <span class="u-md-val" id="uMdPlan">-</span>
+              </div>
+              <div class="u-md-row">
+                <span class="u-md-label">Status</span>
+                <span class="u-md-val" id="uMdStatus">-</span>
+              </div>
+              <div class="u-md-row">
+                <span class="u-md-label">Member since</span>
+                <span class="u-md-val" id="uMdJoin">-</span>
+              </div>
+              <div class="u-md-row">
+                <span class="u-md-label">Next renewal</span>
+                <span class="u-md-val" id="uMdDue">-</span>
+              </div>
+              <div class="u-md-row">
+                <span class="u-md-label">Days remaining</span>
+                <span class="u-md-val" id="uMdDaysLeft">-</span>
+              </div>
+            </div>
+            <div style="padding:0 20px 20px">
+              <button type="button" class="btn-primary btn-sm" onclick="openRenewModal()">Renew membership</button>
+            </div>
+          </div>
+
+          <div class="u-card">
+            <div class="u-card-header">
+              <h3>Change password</h3>
+            </div>
+            <div class="u-profile-form" style="padding:20px">
+              <div class="field-group">
+                <label for="uPwCurrent">Current password</label>
+                <input type="password" id="uPwCurrent" placeholder="Enter current password" />
+              </div>
+              <div class="field-group" style="margin-top:12px">
+                <label for="uPwNew">New password</label>
+                <input type="password" id="uPwNew" placeholder="Create a new password" />
+              </div>
+              <div class="field-group" style="margin-top:12px">
+                <label for="uPwConfirm">Confirm new password</label>
+                <input type="password" id="uPwConfirm" placeholder="Repeat your new password" />
+              </div>
+              <div id="uPwMsg" class="hidden" style="margin-top:12px;font-size:12px"></div>
+              <button type="button" class="btn-secondary" style="margin-top:16px" onclick="changePassword()">Update
+                password</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="uview-payments" class="u-view hidden">
+        <div class="u-view-header">
+          <h2>Payments and billing</h2>
+          <p>Review your current plan, recent payments, and renewal options.</p>
+        </div>
+
+        <div class="u-payments-grid">
+          <div class="u-card u-payment-status">
+            <div class="u-card-header">
+              <h3>Current subscription</h3>
+            </div>
+            <div class="u-payment-info">
+              <div class="u-pi-row">
+                <span class="u-pi-label">Plan</span>
+                <span class="u-pi-val" id="uPaymentPlan">-</span>
+              </div>
+              <div class="u-pi-row">
+                <span class="u-pi-label">Amount</span>
+                <span class="u-pi-val" id="uPaymentAmount">-</span>
+              </div>
+              <div class="u-pi-row">
+                <span class="u-pi-label">Status</span>
+                <span class="u-pi-val" id="uPaymentStatus">-</span>
+              </div>
+              <div class="u-pi-row">
+                <span class="u-pi-label">Next renewal</span>
+                <span class="u-pi-val" id="uPaymentDue">-</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="u-card u-payment-action">
+            <div class="u-card-header">
+              <h3>Renew subscription</h3>
+            </div>
+            <div class="u-payment-content">
+              <p>Use the secure online payment button below to renew your membership plan.</p>
+              <div class="u-subscription-widget">
+                <form>
+                  <script>
+                    window.errorQueue = window.errorQueue || [];
+                  </script>
+                  <script src="https://cdn.razorpay.com/static/widget/subscription-button.js"
+                    data-subscription_button_id="pl_SpHhrWA7xB8Ybm" data-button_theme="rzp-dark-standard" async>
+                    </script>
+                </form>
+              </div>
+              <p class="u-payment-note">You will be redirected to complete the membership payment securely.
+              </p>
+            </div>
+          </div>
+
+          <div class="u-card u-span2">
+            <div class="u-card-header">
+              <h3>Payment history</h3>
+              <span class="u-card-sub" id="uPaymentHistoryCount">0 payments</span>
+            </div>
+            <div class="u-payment-history" id="uPaymentHistoryList"></div>
+          </div>
+
+          <div class="u-card u-cta-card">
+            <div class="u-card-header">
+              <h3>Explore the club</h3>
+            </div>
+            <p>See our facilities, hours, and community feel before your next visit.</p>
+            <a href="about.html" class="btn-secondary">Visit About page</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="uRenewModal" class="modal-overlay hidden">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <div>
+          <p class="modal-eyebrow">Membership renewal</p>
+          <h2>Choose a plan</h2>
+        </div>
+        <button type="button" class="modal-close" onclick="closeRenewModal()">Close</button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text2);font-size:13px;margin-bottom:16px">
+          You can select a renewal option here, then complete payment online or with the gym desk.
+        </p>
+        <div class="u-renew-options">
+          <button type="button" class="u-renew-opt" onclick="selectRenewPlan('Monthly', this)">
+            <div class="u-ro-name">Monthly</div>
+            <div class="u-ro-price">From Rs 1,000</div>
+            <div class="u-ro-desc">30 days access</div>
+          </button>
+          <button type="button" class="u-renew-opt" onclick="selectRenewPlan('Quarterly', this)">
+            <div class="u-ro-name">Quarterly</div>
+            <div class="u-ro-price">From Rs 2,500</div>
+            <div class="u-ro-desc">90 days access and better value</div>
+          </button>
+          <button type="button" class="u-renew-opt" onclick="selectRenewPlan('Annual', this)">
+            <div class="u-ro-name">Annual</div>
+            <div class="u-ro-price">From Rs 10,000</div>
+            <div class="u-ro-desc">365 days access with the biggest savings</div>
+          </button>
+        </div>
+        <div id="uRenewMsg" class="hidden" style="margin-top:12px"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" onclick="closeRenewModal()">Close</button>
+        <button type="button" class="btn-primary"
+          onclick="openPaymentModal(document.querySelector('.u-renew-opt.selected')?.querySelector('.u-ro-name')?.textContent || 'Monthly')">Pay
+          now online</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="uToast" class="toast hidden"></div>
+
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="modal-overlay hidden">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <span>Renew Membership</span>
+        <button type="button" class="modal-close" onclick="closePaymentModal()">Close</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom: 16px;">
+          <p style="margin-bottom: 8px;"><strong>Amount due:</strong></p>
+          <p style="font-size: 28px; font-weight: 700; color: var(--accent);">₹<span id="paymentAmount">0</span></p>
+        </div>
+        <div
+          style="background: var(--surface); padding: 12px; border-radius: 6px; margin-bottom: 16px; font-size: 12px; color: var(--text2);">
+          <p style="margin: 0;">Plan: <strong id="paymentPlanText">-</strong></p>
+          <p style="margin: 4px 0 0;">Valid for the selected period</p>
+        </div>
+        <div id="paymentError" class="error-msg hidden" style="margin-bottom: 12px;"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" onclick="closePaymentModal()">Cancel</button>
+        <button type="button" class="btn-primary" id="payNowBtn" onclick="processPayment()">Pay now</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="app.js"></script>
+  <script src="user.js"></script>
+</body>
+
+</html>

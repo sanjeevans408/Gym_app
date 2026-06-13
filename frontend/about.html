@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Forge Fitness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="about.css" />
+</head>
+
+<body class="about-portal">
+  <div class="about-bg" aria-hidden="true">
+    <div class="about-orb about-orb-left"></div>
+    <div class="about-orb about-orb-right"></div>
+  </div>
+
+  <header class="about-header">
+    <div class="about-header-content">
+      <a href="user.html" class="about-logo">
+        <img src="assets/brand/forge-fitness-logo.webp" alt="Forge Fitness logo" class="brand-mark small" />
+        <span>
+          <strong>Forge Fitness</strong>
+          <small>Strength and conditioning club</small>
+        </span>
+      </a>
+
+      <nav class="about-nav">
+        <a href="#about" class="about-nav-link active">About</a>
+        <a href="#gallery" class="about-nav-link">Gallery</a>
+        <a href="#contact" class="about-nav-link">Contact</a>
+      </nav>
+
+      <a href="user.html" class="btn-secondary about-header-btn">Member portal</a>
+    </div>
+  </header>
+
+  <main class="about-main">
+    <section class="hero-section">
+      <div class="section-container hero-grid">
+        <div class="hero-copy" data-reveal>
+          <span class="section-kicker">Forge Fitness</span>
+          <h1>Train in a focused space built for strength, consistency, and everyday progress.</h1>
+          <p>
+            Forge Fitness brings together modern equipment, a clean training floor, and direct owner support so every
+            workout feels clear, motivating, and worth coming back for.
+          </p>
+
+          <div class="hero-actions">
+            <button type="button" class="btn-primary"
+              onclick="document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' })">
+              View gallery
+            </button>
+            <button type="button" class="btn-secondary"
+              onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">
+              Contact the gym
+            </button>
+          </div>
+
+          <div class="hero-stats">
+            <article class="hero-stat">
+              <span>Cardio zone</span>
+              <p>Treadmills and conditioning equipment for warm-ups, endurance work, and fat-loss sessions.</p>
+            </article>
+            <article class="hero-stat">
+              <span>Strength setup</span>
+              <p>Free weights, racks, benches, and machine stations for full-body training.</p>
+            </article>
+            <article class="hero-stat">
+              <span>Member support</span>
+              <p>Direct communication with the gym owner for enquiries, guidance, and memberships.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-visual" data-reveal>
+          <div class="hero-card hero-brand-card">
+            <div class="hero-card-top">
+              <span class="panel-pill">Gym identity</span>
+              <span class="hero-card-copy">Forge Fitness</span>
+            </div>
+            <img src="assets/brand/forge-fitness-logo.webp" alt="Forge Fitness emblem" class="hero-logo-image" />
+            <h2>Built for serious training without losing the welcoming feel.</h2>
+            <p>
+              From cardio to free weights to plate-loaded machines, the setup is designed to make every session smooth
+              and effective.
+            </p>
+          </div>
+
+          <div class="hero-card hero-card-accent">
+            <span class="hero-mini-label">Direct contact</span>
+            <strong>Reach out to R.Annamalai Raja for memberships, gym details, and visit enquiries.</strong>
+            <div class="hero-contact-list">
+              <div class="hero-contact-item">
+                <span>Phone</span>
+                <a href="tel:+919952061784">9952061784</a>
+              </div>
+              <div class="hero-contact-item">
+                <span>Email</span>
+                <a href="mailto:forgefitness2026@gmail.com">forgefitness2026@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="section-container">
+        <div class="section-heading" data-reveal>
+          <span class="section-kicker">About Forge Fitness</span>
+          <h2 class="section-title">A training space that looks strong and feels approachable.</h2>
+          <p>
+            Forge Fitness is designed for people who want a motivating environment, dependable equipment, and a clean
+            floor they can train on consistently. The space supports beginners, regular members, and serious lifters
+            alike.
+          </p>
+        </div>
+
+        <div class="about-content">
+          <article class="story-card" data-reveal>
+            <h3>What members can expect</h3>
+            <p>
+              Clear zones, well-maintained machines, and a layout that makes it easy to move between cardio, strength,
+              and accessory work without feeling crowded or lost.
+            </p>
+            <ul class="story-list">
+              <li>Cardio equipment for warm-up, endurance, and conditioning sessions</li>
+              <li>Dedicated strength areas with benches, racks, dumbbells, and machine work</li>
+              <li>A calm, focused atmosphere that keeps training simple and consistent</li>
+            </ul>
+          </article>
+
+          <div class="feature-grid">
+            <article class="feature-card" data-reveal>
+              <span class="feature-pill">01</span>
+              <h3>Modern cardio line</h3>
+              <p>Treadmills positioned with natural light and comfortable spacing for cleaner sessions.</p>
+            </article>
+            <article class="feature-card" data-reveal>
+              <span class="feature-pill">02</span>
+              <h3>Full strength floor</h3>
+              <p>Racks, benches, and free-weight zones that support everyday training and progression.</p>
+            </article>
+            <article class="feature-card" data-reveal>
+              <span class="feature-pill">03</span>
+              <h3>Plate-loaded machines</h3>
+              <p>Specialized equipment for focused leg, back, and upper-body work across experience levels.</p>
+            </article>
+            <article class="feature-card" data-reveal>
+              <span class="feature-pill">04</span>
+              <h3>Motivating environment</h3>
+              <p>Clean design, organized equipment, and branding that gives the gym a strong identity.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+      <div class="section-container">
+        <div class="section-heading" data-reveal>
+          <span class="section-kicker">Project gallery</span>
+          <h2 class="section-title">Real spaces from inside Forge Fitness.</h2>
+          <p>
+            A closer look at the gym floor, machines, free weights, and training areas members use every day.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="gallery-photo-card tall" data-reveal>
+            <img src="assets/gallery/strength-floor.jpg" alt="Forge Fitness strength floor" loading="lazy" />
+            <div class="gallery-caption">
+              <span class="gallery-index">01</span>
+              <h3>Strength floor</h3>
+              <p>Open machine layout built for productive, full-body training sessions.</p>
+            </div>
+          </article>
+
+          <article class="gallery-photo-card" data-reveal>
+            <img src="assets/gallery/cardio-zone.jpg" alt="Cardio treadmills at Forge Fitness" loading="lazy" />
+            <div class="gallery-caption">
+              <span class="gallery-index">02</span>
+              <h3>Cardio zone</h3>
+              <p>Treadmills arranged for focused warm-ups, endurance work, and conditioning.</p>
+            </div>
+          </article>
+
+          <article class="gallery-photo-card" data-reveal>
+            <img src="assets/gallery/pulldown-station.jpg" alt="Pulldown and support station at Forge Fitness"
+              loading="lazy" />
+            <div class="gallery-caption">
+              <span class="gallery-index">03</span>
+              <h3>Support station</h3>
+              <p>Dedicated equipment for controlled upper-body and accessory training.</p>
+            </div>
+          </article>
+
+          <article class="gallery-photo-card wide" data-reveal>
+            <img src="assets/gallery/squat-zone.jpg" alt="Squat and free-weight zone at Forge Fitness"
+              loading="lazy" />
+            <div class="gallery-caption">
+              <span class="gallery-index">04</span>
+              <h3>Free-weight room</h3>
+              <p>Racks, bars, mirrors, and floor space set up for stronger lifting sessions.</p>
+            </div>
+          </article>
+
+          <article class="gallery-photo-card" data-reveal>
+            <img src="assets/gallery/dumbbell-rack.jpg" alt="Dumbbell rack at Forge Fitness" loading="lazy" />
+            <div class="gallery-caption">
+              <span class="gallery-index">05</span>
+              <h3>Dumbbell rack</h3>
+              <p>A complete free-weight setup for presses, rows, curls, lunges, and accessory work.</p>
+            </div>
+          </article>
+
+          <article class="gallery-photo-card" data-reveal>
+            <img src="assets/gallery/free-weight-room.jpg" alt="Another dumbbell and bench view at Forge Fitness"
+              loading="lazy" />
+            <div class="gallery-caption">
+              <span class="gallery-index">06</span>
+              <h3>Bench and free weights</h3>
+              <p>Simple, organized strength tools that make everyday training efficient.</p>
+            </div>
+          </article>
+
+          <article class="gallery-photo-card" data-reveal>
+            <img src="assets/gallery/leg-press-zone.jpg" alt="Leg press and branded wall inside Forge Fitness"
+              loading="lazy" />
+            <div class="gallery-caption">
+              <span class="gallery-index">07</span>
+              <h3>Leg press zone</h3>
+              <p>Plate-loaded strength equipment framed by the gym's Forge Fitness branding.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="section-container contact-grid">
+        <div class="contact-media" data-reveal>
+          <article class="contact-photo large">
+            <img src="assets/gallery/strength-floor.jpg" alt="Main training area at Forge Fitness" loading="lazy" />
+          </article>
+          <div class="contact-photo-stack">
+            <article class="contact-photo">
+              <img src="assets/gallery/cardio-zone.jpg" alt="Cardio equipment at Forge Fitness" loading="lazy" />
+            </article>
+            <article class="contact-photo">
+              <img src="assets/gallery/leg-press-zone.jpg" alt="Leg press area at Forge Fitness" loading="lazy" />
+            </article>
+          </div>
+        </div>
+
+        <div class="contact-panel" data-reveal>
+          <span class="section-kicker">Get in touch</span>
+          <h2 class="section-title left">Talk to Forge Fitness directly.</h2>
+          <p>
+            For memberships, training questions, and visit details, contact the gym owner through phone, email, or
+            Instagram.
+          </p>
+
+          <div class="contact-stack">
+            <article class="contact-card">
+              <h3>Owner</h3>
+              <p>R.Annamalai Raja</p>
+            </article>
+            <article class="contact-card">
+              <h3>Phone</h3>
+              <p><a href="tel:+919952061784">9952061784</a></p>
+            </article>
+            <article class="contact-card">
+              <h3>Email</h3>
+              <p><a href="mailto:forgefitness2026@gmail.com">forgefitness2026@gmail.com</a></p>
+            </article>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.instagram.com/forgefitness_24?igsh=a25uY3dkcGpleGky" target="_blank"
+              rel="noreferrer" class="social-link">Instagram @forgefitness_24</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="section-container cta-wrap" data-reveal>
+        <span class="section-kicker">Forge Fitness</span>
+        <h2>Ready to start training?</h2>
+        <p>Reach out directly and plan your first visit with the Forge Fitness team.</p>
+        <div class="hero-actions">
+          <a href="tel:+919952061784" class="btn-primary">Call now</a>
+          <a href="mailto:forgefitness2026@gmail.com" class="btn-secondary">Send email</a>
+          <a href="https://www.instagram.com/forgefitness_24?igsh=a25uY3dkcGpleGky" target="_blank"
+            rel="noreferrer" class="btn-secondary">Open Instagram</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="about-footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Forge Fitness.</p>
+      <p>
+        <a href="tel:+919952061784">9952061784</a>
+        <a href="mailto:forgefitness2026@gmail.com">forgefitness2026@gmail.com</a>
+        <a href="https://www.instagram.com/forgefitness_24?igsh=a25uY3dkcGpleGky" target="_blank"
+          rel="noreferrer">Instagram</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="about.js"></script>
+</body>
+
+</html>

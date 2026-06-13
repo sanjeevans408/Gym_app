@@ -1,0 +1,1411 @@
+body.user-portal {
+  position: relative;
+  background:
+    radial-gradient(circle at top left, rgba(220, 64, 80, 0.06), transparent 35%),
+    radial-gradient(circle at 85% 15%, rgba(52, 152, 219, 0.05), transparent 40%),
+    linear-gradient(180deg, #0F1419 0%, #12171F 100%);
+}
+
+.u-scene {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.u-glow-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(100px);
+  opacity: 0.24;
+  animation: uFloat 18s ease-in-out infinite alternate;
+}
+
+.orb1 {
+  width: 28rem;
+  height: 28rem;
+  top: -9rem;
+  left: -8rem;
+  background: rgba(220, 64, 80, 0.18);
+}
+
+.orb2 {
+  width: 24rem;
+  height: 24rem;
+  right: -6rem;
+  bottom: -8rem;
+  background: rgba(52, 152, 219, 0.14);
+  animation-duration: 20s;
+}
+
+.u-particles {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.85), transparent 82%);
+  opacity: 0.24;
+}
+
+.u-login-screen {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.u-login-shell {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(360px, 430px);
+  gap: 2rem;
+  align-items: center;
+}
+
+.u-login-story h1 {
+  margin: 1rem 0 1rem;
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  line-height: 1.05;
+  max-width: 12ch;
+}
+
+.u-login-story p {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--text2);
+  line-height: 1.72;
+}
+
+.u-story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.u-story-card,
+.u-login-card,
+.u-welcome-banner,
+.u-membership-card,
+.u-countdown,
+.u-renewal-tip,
+.u-action-card,
+.u-qs-card,
+.u-alert-banner,
+.u-card,
+.u-day-tab,
+.u-sched-item,
+.u-renew-opt {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 23, 40, 0.76);
+  box-shadow: var(--shadow-md);
+}
+
+.u-story-card::before,
+.u-login-card::before,
+.u-welcome-banner::before,
+.u-membership-card::before,
+.u-countdown::before,
+.u-renewal-tip::before,
+.u-action-card::before,
+.u-qs-card::before,
+.u-alert-banner::before,
+.u-card::before,
+.u-day-tab::before,
+.u-sched-item::before,
+.u-renew-opt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 28%);
+  pointer-events: none;
+}
+
+.u-story-card {
+  padding: 1.3rem;
+  border-radius: 24px;
+}
+
+.u-story-label,
+.u-qs-label-top,
+.u-action-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text3);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.u-story-card strong {
+  display: block;
+  margin: 0.8rem 0 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+}
+
+.u-login-wrap {
+  width: 100%;
+}
+
+.u-login-card {
+  padding: 1.6rem;
+  border-radius: 32px;
+}
+
+.u-login-logo {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.u-login-logo h2 {
+  margin: 0.3rem 0 0.35rem;
+  font-family: var(--font-heading);
+  font-size: 1.96rem;
+}
+
+.u-login-sub,
+.u-forgot-info {
+  margin: 0;
+  color: var(--text2);
+}
+
+.u-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.u-btn-full {
+  width: 100%;
+}
+
+.u-forgot-btn {
+  padding: 0.2rem 0;
+  background: none;
+  border: 0;
+  color: var(--text3);
+  text-align: center;
+}
+
+.u-forgot-btn:hover {
+  color: var(--text2);
+}
+
+.u-login-footer {
+  margin-top: 1.3rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.u-demo-hint {
+  margin: 0;
+  color: var(--text3);
+  font-size: 0.84rem;
+  font-family: var(--font-mono);
+}
+
+.u-login-links {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.u-app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.u-topnav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 20, 34, 0.76);
+  backdrop-filter: blur(20px);
+}
+
+.u-topnav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.u-topnav-name {
+  font-family: var(--font-heading);
+  font-size: 1.04rem;
+}
+
+.u-topnav-center {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.34rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.u-nav-tab {
+  min-height: 42px;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text3);
+}
+
+.u-nav-tab:hover,
+.u-nav-tab.active {
+  color: var(--text);
+  background: rgba(220, 64, 80, 0.12);
+}
+
+.u-topnav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.u-notif-btn,
+.u-user-chip,
+.u-logout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 42px;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text2);
+}
+
+.u-notif-btn:hover,
+.u-user-chip:hover,
+.u-logout-btn:hover {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.u-notif-btn {
+  position: relative;
+}
+
+.u-notif-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--accent-danger);
+  display: none;
+  box-shadow: 0 0 0 4px rgba(255, 122, 122, 0.12);
+}
+
+.u-notif-dot.visible {
+  display: inline-flex;
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+
+.u-user-chip {
+  padding-left: 0.4rem;
+}
+
+.u-user-avatar,
+.ucard-avatar,
+.u-profile-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #FFF;
+  background: linear-gradient(135deg, var(--accent), #E8556B);
+  box-shadow: 0 12px 24px rgba(220, 64, 80, 0.18);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.u-user-avatar {
+  width: 34px;
+  height: 34px;
+  font-size: 0.84rem;
+}
+
+.u-main {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.4rem 0 2.4rem;
+}
+
+.u-welcome-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+}
+
+.u-welcome-banner h1 {
+  margin: 0.8rem 0 0.7rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.u-welcome-banner p {
+  margin: 0;
+  color: var(--text2);
+  line-height: 1.7;
+  max-width: 42rem;
+}
+
+.u-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.u-banner-pill,
+.ucard-plan,
+.u-profile-plan-badge,
+.u-class-slots,
+.u-sched-slots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(220, 64, 80, 0.12);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.u-view {
+  animation: fadeUp 0.48s ease;
+}
+
+.u-view.hidden {
+  display: none;
+}
+
+.u-view-header {
+  margin-bottom: 1rem;
+}
+
+.u-view-header h2 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.u-view-header p {
+  margin: 0.45rem 0 0;
+  color: var(--text2);
+  line-height: 1.68;
+}
+
+.u-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.85fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.u-membership-card,
+.u-countdown,
+.u-renewal-tip,
+.u-action-card,
+.u-card,
+.u-qs-card,
+.u-sched-item,
+.u-day-tab,
+.u-renew-opt {
+  border-radius: 28px;
+}
+
+.u-membership-card {
+  padding: 1.5rem;
+  background:
+    linear-gradient(135deg, rgba(220, 64, 80, 0.1), transparent 30%),
+    linear-gradient(180deg, rgba(11, 23, 40, 0.92), rgba(12, 24, 41, 0.76));
+}
+
+.ucard-noise {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 0.7px, transparent 0.7px);
+  background-size: 22px 22px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.ucard-top,
+.ucard-mid,
+.u-card-header {
+  position: relative;
+  z-index: 1;
+}
+
+.ucard-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.ucard-gym {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+}
+
+.ucard-mid {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+}
+
+.ucard-avatar {
+  width: 58px;
+  height: 58px;
+  font-size: 1.45rem;
+}
+
+.ucard-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.ucard-email {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text3);
+  font-family: var(--font-mono);
+}
+
+.ucard-bot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ucard-flabel {
+  color: var(--text3);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ucard-fval {
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.ucard-due {
+  color: var(--accent);
+}
+
+.ucard-due.overdue {
+  color: var(--accent-danger);
+}
+
+.ucard-due.expiring {
+  color: var(--accent-warm);
+}
+
+.u-countdown-wrap {
+  display: grid;
+  gap: 1rem;
+}
+
+.u-countdown,
+.u-renewal-tip,
+.u-action-card {
+  padding: 1.35rem;
+}
+
+.u-countdown {
+  text-align: center;
+}
+
+.u-cd-number {
+  font-family: var(--font-heading);
+  font-size: clamp(3.2rem, 8vw, 5.2rem);
+  line-height: 1;
+  color: var(--accent);
+}
+
+.u-cd-number.urgent {
+  color: var(--accent-warm);
+}
+
+.u-cd-number.overdue {
+  color: var(--accent-danger);
+}
+
+.u-cd-label {
+  margin-top: 0.5rem;
+  color: var(--text3);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.u-renewal-tip {
+  color: var(--text2);
+  line-height: 1.65;
+  display: none;
+}
+
+.u-renewal-tip.visible {
+  display: block;
+}
+
+.u-renewal-tip.warn {
+  border-color: rgba(255, 211, 106, 0.22);
+  color: #ffe4a1;
+}
+
+.u-renewal-tip.alert {
+  border-color: rgba(255, 122, 122, 0.24);
+  color: #ffd0d0;
+}
+
+.u-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.u-quick-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.u-qs-card {
+  padding: 1.2rem;
+}
+
+.u-qs-val {
+  margin-top: 0.9rem;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.u-qs-label {
+  margin-top: 0.45rem;
+  color: var(--text3);
+  font-size: 0.82rem;
+}
+
+.u-alert-banner {
+  padding: 1rem 1.2rem;
+  border-radius: 22px;
+  margin-bottom: 1rem;
+  line-height: 1.65;
+}
+
+.u-alert-banner.warn {
+  color: #ffe4a1;
+  border-color: rgba(255, 211, 106, 0.2);
+  background: rgba(255, 211, 106, 0.08);
+}
+
+.u-alert-banner.alert {
+  color: #ffd3d3;
+  border-color: rgba(255, 122, 122, 0.24);
+  background: rgba(255, 122, 122, 0.08);
+}
+
+.u-home-grid,
+.u-history-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.u-span2 {
+  grid-column: 1 / -1;
+}
+
+.u-card {
+  border-radius: 28px;
+}
+
+.u-card-header {
+  padding: 1.2rem 1.3rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.u-card-header h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
+}
+
+.u-card-sub {
+  color: var(--text3);
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+}
+
+.u-link-btn {
+  background: none;
+  border: 0;
+  color: var(--accent);
+  padding: 0;
+}
+
+.u-week-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.7rem;
+  height: 180px;
+  padding: 1.4rem;
+}
+
+.u-wc-bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.55rem;
+  height: 100%;
+}
+
+.u-wc-bar {
+  width: 100%;
+  min-height: 6px;
+  border-radius: 999px 999px 10px 10px;
+  background: rgba(220, 64, 80, 0.12);
+  border: 1px solid rgba(220, 64, 80, 0.16);
+  transition: height 0.45s ease;
+}
+
+.u-wc-bar.active {
+  background: rgba(220, 64, 80, 0.28);
+}
+
+.u-wc-bar.today {
+  background: linear-gradient(180deg, #E8556B, var(--accent));
+}
+
+.u-wc-label {
+  color: var(--text3);
+  font-size: 0.72rem;
+}
+
+.u-wc-label.today {
+  color: var(--accent);
+}
+
+.u-class-list,
+.u-payment-list,
+.u-visit-list,
+.u-notif-panel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1rem;
+}
+
+.u-class-item,
+.u-pay-item,
+.u-visit-item,
+.u-notif-item {
+  padding: 0.95rem 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.u-class-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.u-class-time,
+.u-pay-date,
+.u-visit-time,
+.u-notif-time,
+.u-md-val,
+.u-pi-val,
+.u-payment-item-amount {
+  font-family: var(--font-mono);
+}
+
+.u-class-time {
+  color: var(--accent);
+  font-size: 0.88rem;
+}
+
+.u-class-name,
+.u-pay-plan,
+.u-visit-day,
+.u-notif-title,
+.u-sched-name {
+  font-weight: 700;
+}
+
+.u-class-coach,
+.u-ann-body,
+.u-sched-meta,
+.u-visit-class,
+.u-notif-body,
+.u-payment-note,
+.u-payment-item-plan {
+  color: var(--text3);
+}
+
+.u-class-slots.full,
+.u-sched-slots.full {
+  background: rgba(255, 122, 122, 0.12);
+  color: var(--accent-danger);
+}
+
+.u-announcements {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.u-ann-item {
+  padding: 1rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.u-ann-item.highlight {
+  border-color: rgba(220, 64, 80, 0.18);
+}
+
+.u-ann-item.alert {
+  border-color: rgba(255, 122, 122, 0.2);
+}
+
+.u-ann-item.info {
+  border-color: rgba(124, 200, 255, 0.2);
+}
+
+.u-ann-title {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.u-ann-date {
+  margin-top: 0.8rem;
+  color: var(--text4);
+  font-size: 0.76rem;
+  font-family: var(--font-mono);
+}
+
+.u-day-tabs {
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+}
+
+.u-day-tab {
+  min-width: 88px;
+  padding: 0.9rem 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.u-day-tab.active {
+  border-color: rgba(220, 64, 80, 0.24);
+  background: rgba(220, 64, 80, 0.1);
+}
+
+.u-day-tab-day {
+  color: var(--text3);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.u-day-tab-date {
+  margin-top: 0.25rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+}
+
+.u-schedule-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.u-sched-item {
+  display: grid;
+  grid-template-columns: auto 6px 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.15rem;
+}
+
+.u-sched-time {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  min-width: 56px;
+}
+
+.u-sched-color {
+  width: 6px;
+  align-self: stretch;
+  border-radius: 999px;
+}
+
+.u-sched-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+}
+
+.u-book-btn {
+  min-width: 90px;
+  padding: 0.62rem 0.95rem;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), #E8556B);
+  color: #FFF;
+  font-weight: 700;
+}
+
+.u-book-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.u-heatmap {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.35rem;
+  padding: 1.2rem 1.3rem;
+}
+
+.u-hm-cell {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.u-hm-cell.s1 {
+  background: rgba(220, 64, 80, 0.24);
+}
+
+.u-hm-cell.s2 {
+  background: rgba(220, 64, 80, 0.46);
+}
+
+.u-hm-cell.s3 {
+  background: rgba(220, 64, 80, 0.82);
+}
+
+.u-hm-cell.today-cell {
+  outline: 2px solid rgba(52, 152, 219, 0.9);
+  outline-offset: 2px;
+}
+
+.u-heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0 1.3rem 1rem;
+  color: var(--text4);
+  font-size: 0.72rem;
+}
+
+.u-hm-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+.u-hm-swatch.s0 {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.u-hm-swatch.s1 {
+  background: rgba(220, 64, 80, 0.24);
+}
+
+.u-hm-swatch.s2 {
+  background: rgba(220, 64, 80, 0.46);
+}
+
+.u-hm-swatch.s3 {
+  background: rgba(220, 64, 80, 0.82);
+}
+
+.u-payment-list,
+.u-visit-list {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.u-pay-item,
+.u-visit-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.u-pay-amount {
+  color: var(--accent-success);
+  font-weight: 700;
+}
+
+.u-visit-dot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--accent-success);
+}
+
+.u-profile-grid {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.u-profile-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.6rem;
+  text-align: center;
+}
+
+.u-profile-avatar-wrap {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.u-profile-avatar {
+  width: 96px;
+  height: 96px;
+  font-size: 2.3rem;
+}
+
+.u-profile-avatar-ring {
+  position: absolute;
+  inset: -7px;
+  border-radius: 999px;
+  border: 1px dashed rgba(220, 64, 80, 0.34);
+  animation: spin 18s linear infinite;
+}
+
+.u-profile-name {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+}
+
+.u-profile-meta {
+  margin: 0.4rem 0 1rem;
+  color: var(--text3);
+}
+
+.u-profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.u-ps-item {
+  padding: 0.95rem 0.6rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.u-ps-item:last-child {
+  border-right: 0;
+}
+
+.u-ps-val {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+}
+
+.u-ps-label {
+  margin-top: 0.22rem;
+  color: var(--text4);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.u-profile-form {
+  padding: 1.3rem;
+}
+
+.u-membership-details,
+.u-payment-info {
+  padding: 1rem 1.3rem 1.2rem;
+}
+
+.u-md-row,
+.u-pi-row,
+.u-payment-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.u-md-row:last-child,
+.u-pi-row:last-child,
+.u-payment-item:last-child {
+  border-bottom: 0;
+}
+
+.u-md-label,
+.u-pi-label {
+  color: var(--text3);
+}
+
+.u-payments-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.u-payment-content {
+  padding: 1.3rem;
+  text-align: center;
+}
+
+.u-payment-content p {
+  margin: 0;
+  color: var(--text2);
+  line-height: 1.65;
+}
+
+.u-subscription-widget {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.u-subscription-widget form {
+  width: 100%;
+}
+
+.btn-payment {
+  margin-top: 1rem;
+  width: 100%;
+  min-height: 52px;
+  text-decoration: none;
+}
+
+.u-payment-note {
+  margin-top: 0.85rem !important;
+  font-size: 0.84rem;
+}
+
+.u-payment-history {
+  padding: 0 1.3rem 1.2rem;
+}
+
+.u-payment-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.u-payment-item-date {
+  font-weight: 700;
+}
+
+.u-cta-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.3rem;
+  background: linear-gradient(135deg, rgba(220, 64, 80, 0.1), rgba(52, 152, 219, 0.06));
+}
+
+.u-cta-card p {
+  margin: 0;
+  color: var(--text2);
+  line-height: 1.68;
+}
+
+.u-renew-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.u-renew-opt {
+  padding: 1rem;
+  text-align: center;
+}
+
+.u-renew-opt:hover,
+.u-renew-opt.selected {
+  border-color: rgba(220, 64, 80, 0.28);
+  background: rgba(220, 64, 80, 0.08);
+}
+
+.u-ro-name {
+  color: var(--text3);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.u-ro-price {
+  margin-top: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+}
+
+.u-ro-desc {
+  margin-top: 0.38rem;
+  color: var(--text3);
+  font-size: 0.82rem;
+}
+
+.u-notif-panel {
+  position: fixed;
+  top: 78px;
+  right: 1rem;
+  width: min(360px, calc(100vw - 2rem));
+  max-height: calc(100vh - 100px);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 23, 40, 0.92);
+  box-shadow: var(--shadow-xl);
+  backdrop-filter: blur(20px);
+  transform: translateY(-12px);
+  opacity: 0;
+  transition: opacity 0.24s ease, transform 0.24s ease;
+  z-index: 260;
+}
+
+.u-notif-panel.open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.u-notif-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1rem 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-weight: 700;
+}
+
+.u-notif-panel-header button {
+  border: 0;
+  background: none;
+  color: var(--text3);
+}
+
+.u-notif-item.warn {
+  border-color: rgba(255, 211, 106, 0.18);
+}
+
+.u-notif-item.alert {
+  border-color: rgba(255, 122, 122, 0.2);
+}
+
+.u-notif-item.info {
+  border-color: rgba(124, 200, 255, 0.18);
+}
+
+.u-notif-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  background: rgba(5, 10, 18, 0.32);
+}
+
+@keyframes uFloat {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(28px, 22px, 0) scale(1.08);
+  }
+}
+
+@keyframes pulseDot {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(0.82);
+    opacity: 0.65;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1120px) {
+
+  .u-login-shell,
+  .u-hero,
+  .u-profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .u-story-grid,
+  .u-quick-stats,
+  .u-home-grid,
+  .u-history-grid,
+  .u-payments-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .u-announcements {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .u-topnav {
+    flex-wrap: wrap;
+  }
+
+  .u-topnav-center {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .u-main {
+    width: min(1180px, calc(100% - 1rem));
+  }
+
+  .u-welcome-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .u-banner-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .u-login-screen {
+    padding: 1rem;
+  }
+
+  .u-login-shell,
+  .u-story-grid,
+  .u-quick-stats,
+  .u-home-grid,
+  .u-history-grid,
+  .u-payments-grid,
+  .u-renew-options,
+  .u-login-links {
+    grid-template-columns: 1fr;
+  }
+
+  .u-card,
+  .u-membership-card,
+  .u-countdown,
+  .u-renewal-tip,
+  .u-action-card,
+  .u-day-tab,
+  .u-sched-item,
+  .u-welcome-banner,
+  .u-login-card {
+    border-radius: 24px;
+  }
+
+  .u-qs-card,
+  .u-story-card {
+    border-radius: 22px;
+  }
+
+  .u-span2 {
+    grid-column: auto;
+  }
+
+  .u-class-item,
+  .u-sched-item {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+
+  .ucard-bot {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .u-topnav-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .u-user-chip span,
+  .u-topnav-name {
+    display: none;
+  }
+}
